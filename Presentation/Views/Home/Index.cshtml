@@ -1,0 +1,55 @@
+﻿@model ResponseViewModel<IEnumerable<Demo.Core.Domain.DTOs.StudentDTO>>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">News Info</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Student Name
+                                        </th>
+                                        <th>
+                                            Student Surname
+                                        </th>
+                                        <th>
+                                            Student Age
+                                        </th>
+                                        <th>
+                                            Operations
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Data)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.Name
+                                            </td>
+                                            <td>
+                                                @item.Surname
+                                            </td>
+                                            <td>
+                                                @item.Age
+                                            </td>
+                                            <td><a href="Admin/edit/@item.StudentId" class="btn btn-warning">Edit</a>|<a href="~/Admin/delete/@item.StudentId" class="btn btn-danger">Delete</a></td>
+                                        </tr>
+}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
