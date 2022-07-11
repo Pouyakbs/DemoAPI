@@ -36,10 +36,14 @@ namespace Demo.Core.ApplicationService.Facade
             var result = StudentRepository.Create(createStudent);
             return result;
         }
-        public Student Update(StudentDTO student)
+        public int Edit(StudentDTO student)
         {
             Student createStudent = mapper.Map<StudentDTO, Student>(student);
-            return StudentRepository.Update(createStudent);
+            return StudentRepository.Edit(createStudent);
+        }
+        public void Delete(int id)
+        {
+            StudentRepository.Delete(id);
         }
     }
 }

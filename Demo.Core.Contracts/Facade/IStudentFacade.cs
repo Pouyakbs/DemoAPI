@@ -11,6 +11,7 @@ namespace Demo.Core.Contracts.Facade
         IEnumerable<StudentDTO> GetAll();
         StudentDTO Get(int id);
         int Create(StudentDTO student);
-        Student Update(StudentDTO student);
+        void Delete(int id);
+        int Edit(StudentDTO student);
     }
 }

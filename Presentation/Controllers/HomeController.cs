@@ -68,11 +68,49 @@ namespace Presentation.Controllers
 
             return View(json);
         }
+        public async Task<IActionResult> EditStudent(int id)
+        {
+            var url = $"https://localhost:44352/api/student/{id}";
+
+            HttpClient client = new HttpClient();
+
+            var res = await client.GetStringAsync(url);
+
+            var json = JsonConvert.DeserializeObject<ResponseViewModel<StudentDTO>>(res);
+
+            return View(json);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditStudent(ResponseViewModel<StudentDTO> student)
+        {
+            var json = JsonConvert.SerializeObject(student.Data);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var url = $"https://localhost:44352/api/student/Edit/{student}";
+
+            HttpClient client = new HttpClient();
+
+            var response = await client.PutAsync(url , data);
+
+            var result = await response.Content.ReadAsStringAsync();
+
+            return RedirectToAction("index");
+        }
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            var url = $"https://localhost:44352/api/student/Delete/{id}";
+
+            HttpClient client = new HttpClient();
+
+            var res = await client.DeleteAsync(url);
+
+            return RedirectToAction("index" , res);
+        }
         public IActionResult Privacy()
         {
             return View();
         }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

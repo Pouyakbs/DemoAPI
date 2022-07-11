@@ -28,9 +28,16 @@ namespace Demo.Infrastructure.Data
             context.SaveChanges();
             return student.StudentId;
         }
-        public Student Update(Student student)
+        public void Delete(int id)
         {
-            return null;
+            context.Students.Remove(new Student() { StudentId = id });
+            context.SaveChanges();
+        }
+        public int Edit(Student student)
+        {
+            context.Students.Update(student);
+            context.SaveChanges();
+            return student.StudentId;
         }
     }
 }

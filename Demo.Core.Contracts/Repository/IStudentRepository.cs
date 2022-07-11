@@ -10,6 +10,7 @@ namespace Demo.Core.Contracts.Repository
         List<Student> GetAll();
         Student Get(int id);
         int Create(Student student);
-        Student Update(Student student);
+        void Delete(int id);
+        int Edit(Student student);
     }
 }

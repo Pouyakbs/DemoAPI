@@ -58,7 +58,6 @@ namespace DemoPresentation.Controllers
             }
             return Ok(model);
         }
-
         [HttpPost]
         public IActionResult PostStudent(StudentDTO student)
         {
@@ -79,22 +78,23 @@ namespace DemoPresentation.Controllers
 
 
         [HttpPut]
-        public IActionResult PutStudent(StudentDTO student)
+        [Route("Edit/{student}")]
+        public IActionResult EditStudent(StudentDTO student)
         {
             if (student.StudentId == 0)
             {
-                return BadRequest("id کو؟");
+                return BadRequest("ID Not Found");
             }
-            studentRepository.Update(student);
+            studentRepository.Edit(student);
             return Ok(student);
         }
 
         [HttpDelete]
-
+        [Route("Delete/{id}")]
         public IActionResult Delete(int id)
         {
-            return null;
-
+            studentRepository.Delete(id);
+            return Ok($"/api/student/Delete/{id}");
         }
 
         [Route("api/time")]
